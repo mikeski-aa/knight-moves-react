@@ -10,15 +10,15 @@ function App() {
   const [endCoord, setEndCoord] = useState([7, 4]);
   const [activeStart, setActiveStart] = useState(false);
   const [activeTarget, setActiveTarget] = useState(false);
-  const [startText, setStartText] = useState("Set start coord");
-  const [endText, setEndText] = useState("Set end coord");
   const [testArray, setTestArray] = useState([]);
-  const [disableStart, setDisableStart] = useState(false);
+  const [running, setRunning] = useState(false);
+  const [delay, setDelay] = useState(true);
+  const [count, setCount] = useState(0);
 
   // it would be super cool if a brief animation played showing all moves that were tried!!!
   const handleGameStart = () => {
-    if (!disableStart) {
-      setDisableStart(true);
+    if (!running) {
+      setRunning(true);
       let result = initialize(startCoord, endCoord, startCoord);
       let fakeObject = {
         parents: result.stepsTaken,
@@ -30,63 +30,60 @@ function App() {
       console.log(fakeObject);
       console.log(result.queue);
 
-      setActiveTarget(false);
-      setStartText("Set start coord");
-      setActiveStart(false);
-      setEndText("Set end coord");
-
       // probably should refactor to take this out
-      function recursivelyGoThroughArray() {
-        setTestArray(queue[index].parents);
+      if (delay) {
+        function recursivelyGoThroughArray() {
+          setTestArray(queue[index].parents);
 
-        index++;
+          index++;
 
-        if (index < queue.length) {
-          setTimeout(recursivelyGoThroughArray, 0);
-        } else {
-          setDisableStart(false);
+          if (index < queue.length) {
+            setTimeout(recursivelyGoThroughArray, 0);
+          } else {
+            return setRunning(false);
+          }
         }
-      }
 
-      recursivelyGoThroughArray();
+        recursivelyGoThroughArray();
+      } else {
+        function recursivelyGoThroughArrayNoDelay() {
+          setTestArray(queue[index].parents);
+
+          index++;
+
+          if (index < queue.length) {
+            recursivelyGoThroughArrayNoDelay();
+          } else {
+            return setRunning(false);
+          }
+        }
+
+        recursivelyGoThroughArrayNoDelay();
+      }
     } else {
       alert("already running!");
     }
   };
 
-  const handleStartClick = () => {
-    setTestArray([]);
-    if (activeTarget) {
-      setActiveTarget(false);
-      setStartText("Confirm coordinates");
-      setActiveStart(true);
-      setEndText("Set end coord");
-    }
-
-    if (!activeStart) {
-      setStartText("Confirm coordinates");
-      setActiveStart(true);
+  const handleBoardReset = () => {
+    if (!running) {
+      setTestArray([0, 0]);
     } else {
-      setActiveStart(false);
-      setStartText("Set start coord");
+      alert(
+        "please wait for the current calculation to finish before resetting!"
+      );
     }
   };
 
-  const handleEndClick = () => {
-    setTestArray([]);
-    if (activeStart) {
-      setActiveStart(false);
-      setStartText("Set start coord");
-      setActiveTarget(true);
-      setEndText("Confirm coordinates");
-    }
-
-    if (!activeTarget) {
-      setEndText("Confirm coordinates");
-      setActiveTarget(true);
+  const handleDelayToggle = () => {
+    if (!running) {
+      if (delay) {
+        setDelay(false);
+      } else {
+        setDelay(true);
+      }
     } else {
-      setActiveTarget(false);
-      setEndText("Set end coord");
+      return null;
     }
   };
 
@@ -112,16 +109,19 @@ function App() {
             [{endCoord[0]}, {endCoord[1]}]
           </div>
         </div>
-        <button className="startSet" onClick={handleStartClick}>
-          {startText}
-        </button>
-        <button className="endSet" onClick={handleEndClick}>
-          {endText}
-        </button>
       </div>
       <button className="startBtn" onClick={() => handleGameStart()}>
         Start
       </button>
+      <div className="smallBtnDiv">
+        <button className="startBtn" onClick={() => handleBoardReset()}>
+          Clear previous moves
+        </button>
+        <button className="startBtn" onClick={() => handleDelayToggle()}>
+          {delay ? "Turn animations off" : "Turn animations  on"}
+        </button>
+      </div>
+
       <GlobalContext.Provider
         value={{
           startCoord,
@@ -134,6 +134,10 @@ function App() {
           setActiveTarget,
           testArray,
           setTestArray,
+          count,
+          setCount,
+          running,
+          handleBoardReset,
         }}
       >
         <div className="gameboard">

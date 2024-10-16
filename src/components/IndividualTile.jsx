@@ -33,10 +33,15 @@ function IndividualTile(props) {
   }
 
   const handleBoxClick = () => {
-    if (globalContext.activeStart) {
-      globalContext.setStartCoord(props.item);
-    } else if (globalContext.activeTarget) {
-      globalContext.setEndCoord(props.item);
+    if (!globalContext.running) {
+      globalContext.handleBoardReset();
+      if (globalContext.count % 2 === 0) {
+        globalContext.setStartCoord(props.item);
+        globalContext.setCount(globalContext.count + 1);
+      } else {
+        globalContext.setEndCoord(props.item);
+        globalContext.setCount(globalContext.count + 1);
+      }
     }
   };
 
