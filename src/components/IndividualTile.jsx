@@ -1,8 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { GlobalContext } from "../App";
 
 function IndividualTile(props) {
   const globalContext = useContext(GlobalContext);
+  const [selectedBox, setSelectedBox] = useState(undefined);
   let stringSum = props.item[0] + props.item[1];
   let boxType = undefined;
   // scuffed logic
@@ -18,12 +19,27 @@ function IndividualTile(props) {
   }
 
   const handleBoxClick = () => {
-    globalContext.setStartCoord(props.item);
+    if (globalContext.activeStart) {
+      globalContext.setStartCoord(props.item);
+    } else if (globalContext.activeTarget) {
+      globalContext.setEndCoord(props.item);
+    }
   };
+
+  useState(() => {
+    if (globalContext.startCoord === props.item) {
+      setSelectedBox("startLocation");
+    } else if (globalContext.endCoord === props.item) {
+      setSelectedBox("endLocation");
+    }
+  }, [globalContext.startCoord, globalContext.endCoord]);
 
   return (
     <>
-      <div className={`tile ${boxType}`} onClick={handleBoxClick}>
+      <div
+        className={`tile ${boxType} ${selectedBox}`}
+        onClick={handleBoxClick}
+      >
         {props.item}
       </div>
     </>

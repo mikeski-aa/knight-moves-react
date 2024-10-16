@@ -65,3 +65,15 @@
   height: 30px;
   background-color: green;
 }
+
+.coordSelected {
+  display: flex;
+  flex-direction: column;
+}
+
+.testStart,
+.testEnd {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
