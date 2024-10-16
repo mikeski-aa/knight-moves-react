@@ -5,6 +5,7 @@ import "../styles/individualtile.css";
 function IndividualTile(props) {
   const globalContext = useContext(GlobalContext);
   const [selectedBox, setSelectedBox] = useState(undefined);
+  const [animateBox, setAnimateBox] = useState(undefined);
   let stringSum = props.item[0] + props.item[1];
   let boxType = undefined;
   // scuffed logic
@@ -43,10 +44,32 @@ function IndividualTile(props) {
     }
   }, [globalContext.startCoord, globalContext.endCoord]);
 
+  // this useeffect should handle the "animation"
+  useEffect(() => {
+    if (globalContext.animateArray.length >= 1) {
+      console.log(
+        globalContext.animateArray[0][0] === props.item[0] &&
+          globalContext.animateArray[0][1] === props.item[1]
+      );
+    }
+
+    for (let x = 0; x < globalContext.animateArray.length; x++) {
+      if (
+        globalContext.animateArray[x][0] === props.item[0] &&
+        globalContext.animateArray[x][1] === props.item[1]
+      ) {
+        console.log("true detected");
+        return setAnimateBox(`animate ${x}`);
+      } else {
+        setAnimateBox("inactive");
+      }
+    }
+  }, [globalContext.animateArray]);
+
   return (
     <>
       <div
-        className={`tile ${boxType} ${selectedBox}`}
+        className={`tile ${boxType} ${selectedBox} ${animateBox}`}
         onClick={handleBoxClick}
       >
         {props.item}

@@ -12,13 +12,18 @@ function App() {
   const [activeTarget, setActiveTarget] = useState(false);
   const [startText, setStartText] = useState("Set start coord");
   const [endText, setEndText] = useState("Set end coord");
+  const [animateArray, setAnimateArray] = useState([]);
 
+  // it would be super cool if a brief animation played showing all moves that were tried!!!
   const handleGameStart = () => {
-    console.log(startCoord);
-    console.log(endCoord);
-    let path = initialize(startCoord, endCoord, startCoord);
-    // console.log(initialize(startCoord, endCoord, startCoord));
-    console.log(path);
+    let result = initialize(startCoord, endCoord, startCoord);
+    console.log(result);
+
+    console.log(result.queue[5].parents);
+    setAnimateArray(result.queue[5].parents);
+    // for (let x = 0; x < result.queue.length; x++) {
+    //   console.log(result.queue[5].parents);
+    // }
   };
 
   const handleStartClick = () => {
@@ -80,7 +85,7 @@ function App() {
           <input placeholder="Ending coordinate"></input>
         </div> */}
       </div>
-      <button className="goGame" onClick={handleGameStart}>
+      <button className="goGame" onClick={() => handleGameStart()}>
         Start
       </button>
       <GlobalContext.Provider
@@ -93,6 +98,8 @@ function App() {
           setActiveStart,
           activeTarget,
           setActiveTarget,
+          animateArray,
+          setAnimateArray,
         }}
       >
         <div className="horse" draggable></div>
