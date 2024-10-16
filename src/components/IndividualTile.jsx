@@ -34,13 +34,22 @@ function IndividualTile(props) {
 
   const handleBoxClick = () => {
     if (!globalContext.running) {
-      globalContext.handleBoardReset();
-      if (globalContext.count % 2 === 0) {
-        globalContext.setStartCoord(props.item);
-        globalContext.setCount(globalContext.count + 1);
+      if (
+        (globalContext.startCoord[0] === props.item[0] &&
+          globalContext.startCoord[1] === props.item[1]) ||
+        (globalContext.endCoord[0] === props.item[0] &&
+          globalContext.endCoord[1] === props.item[1])
+      ) {
+        return null;
       } else {
-        globalContext.setEndCoord(props.item);
-        globalContext.setCount(globalContext.count + 1);
+        globalContext.handleBoardReset();
+        if (globalContext.count % 2 === 0) {
+          globalContext.setStartCoord(props.item);
+          globalContext.setCount(globalContext.count + 1);
+        } else {
+          globalContext.setEndCoord(props.item);
+          globalContext.setCount(globalContext.count + 1);
+        }
       }
     }
   };

@@ -25,10 +25,6 @@ function App() {
       };
       let queue = result.queue;
       let index = 0;
-      queue.push(fakeObject);
-      console.log(result);
-      console.log(fakeObject);
-      console.log(result.queue);
 
       // probably should refactor to take this out
       if (delay) {
