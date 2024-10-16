@@ -19,12 +19,14 @@ function App() {
   const handleGameStart = () => {
     let result = initialize(startCoord, endCoord, startCoord);
     let fakeObject = {
-      parents: [result.parents],
+      parents: result.stepsTaken,
     };
+    let queue = result.queue;
+    queue.push(fakeObject);
     console.log(result);
     console.log(fakeObject);
     console.log(result.queue);
-    setAnimateArray(result.queue);
+    setAnimateArray(queue);
     // setAnimateArray(result.queue[5].parents);
     // for (let x = 0; x < result.queue.length; x++) {
     //   console.log(result.queue[5].parents);
@@ -37,12 +39,12 @@ function App() {
     let index = 0;
     let array = [1, 2, 3, 4];
     function recursion() {
-      setTestArray(result.queue[index].parents);
+      setTestArray(queue[index].parents);
 
       index++;
 
-      if (index < result.queue.length) {
-        setTimeout(recursion, 1);
+      if (index < queue.length) {
+        setTimeout(recursion, 0);
       }
     }
 
