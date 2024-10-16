@@ -1,4 +1,4 @@
-function IndividualBox(props) {
+function IndividualTile(props) {
   let stringSum = props.item[0] + props.item[1];
   let boxType = undefined;
   // scuffed logic
@@ -19,11 +19,11 @@ function IndividualBox(props) {
 
   return (
     <>
-      <div className={`box ${boxType}`} onClick={handleBoxClick}>
+      <div className={`tile ${boxType}`} onClick={handleBoxClick}>
         {props.item}
       </div>
     </>
   );
 }
 
-export default IndividualBox;
+export default IndividualTile;

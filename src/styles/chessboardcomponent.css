@@ -28,7 +28,7 @@
   display: flex;
 }
 
-.box,
+.tile,
 .numberBorderItem {
   width: 5vw;
   height: 5vw;
@@ -58,4 +58,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.horse {
+  width: 30px;
+  height: 30px;
+  background-color: green;
 }
