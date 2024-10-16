@@ -4,13 +4,13 @@
 }
 
 .startLocation {
-  background-color: rgb(66, 187, 66);
+  background-color: rgba(66, 187, 66, 0.523);
 }
 
 .endLocation {
-  background-color: rgb(251, 83, 83);
+  background-color: rgba(251, 83, 83, 0.559);
 }
 
 .animate {
-  background-color: greenyellow;
+  background-color: rgba(172, 255, 47, 0.494);
 }

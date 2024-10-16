@@ -1,9 +1,17 @@
-import { useState, useContext, createContext } from "react";
+import { useState, useContext, createContext, useEffect } from "react";
 import "./App.css";
 import Chessboard from "./components/Chessboard";
 import { initialize } from "./logic/main";
 
 export const GlobalContext = createContext();
+
+function delay(i) {
+  setTimeout(() => {
+    console.log("hello");
+  }, 5000);
+}
+
+var array = [1, 2, 3, 4, 5];
 
 function App() {
   const [startCoord, setStartCoord] = useState([0, 0]);
@@ -13,18 +21,38 @@ function App() {
   const [startText, setStartText] = useState("Set start coord");
   const [endText, setEndText] = useState("Set end coord");
   const [animateArray, setAnimateArray] = useState([]);
+  const [testArray, setTestArray] = useState([]);
 
   // it would be super cool if a brief animation played showing all moves that were tried!!!
   const handleGameStart = () => {
     let result = initialize(startCoord, endCoord, startCoord);
     console.log(result);
 
-    console.log(result.queue[5].parents);
-    setAnimateArray(result.queue[5].parents);
+    console.log(result.queue);
+    setAnimateArray(result.queue);
+    // setAnimateArray(result.queue[5].parents);
     // for (let x = 0; x < result.queue.length; x++) {
     //   console.log(result.queue[5].parents);
     // }
+
+    // for (let x = 0; x < result.queue.length; x++) {
+    //   delay();
+    // }
+
+    for (let i = 0; i < array.length; i++) {
+      setTimeout(() => {
+        console.log(array[i]);
+      }, 1000);
+    }
   };
+
+  // useEffect(() => {
+  //   for (let x = 0; x < animateArray.length; x++) {
+  //     setInterval(() => {
+  //       setTestArray(animateArray[x].parents);
+  //     }, 5000);
+  //   }
+  // }, [animateArray]);
 
   const handleStartClick = () => {
     if (activeTarget) {
@@ -100,6 +128,8 @@ function App() {
           setActiveTarget,
           animateArray,
           setAnimateArray,
+          testArray,
+          setTestArray,
         }}
       >
         <div className="horse" draggable></div>

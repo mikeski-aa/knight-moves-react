@@ -45,26 +45,37 @@ function IndividualTile(props) {
   }, [globalContext.startCoord, globalContext.endCoord]);
 
   // this useeffect should handle the "animation"
-  useEffect(() => {
-    if (globalContext.animateArray.length >= 1) {
-      console.log(
-        globalContext.animateArray[0][0] === props.item[0] &&
-          globalContext.animateArray[0][1] === props.item[1]
-      );
-    }
+  // useEffect(() => {
+  //   for (let x = 0; x < globalContext.animateArray.length; x++) {
+  //     for (let y = 0; y < globalContext.animateArray[x].parents.length; y++) {
+  //       if (
+  //         globalContext.animateArray[x].parents[y][0] === props.item[0] &&
+  //         globalContext.animateArray[x].parents[y][1] === props.item[1]
+  //       ) {
+  //         console.log("true detected");
+  //         return setAnimateBox(`animate ${x}`);
+  //       } else {
+  //         setAnimateBox("inactive");
+  //       }
+  //     }
+  //   }
 
-    for (let x = 0; x < globalContext.animateArray.length; x++) {
-      if (
-        globalContext.animateArray[x][0] === props.item[0] &&
-        globalContext.animateArray[x][1] === props.item[1]
-      ) {
-        console.log("true detected");
-        return setAnimateBox(`animate ${x}`);
-      } else {
-        setAnimateBox("inactive");
-      }
-    }
-  }, [globalContext.animateArray]);
+  //   // for (let x = 0; x < globalContext.animateArray.length; x++) {
+  //   //   if (
+  //   //     globalContext.animateArray[x][0] === props.item[0] &&
+  //   //     globalContext.animateArray[x][1] === props.item[1]
+  //   //   ) {
+  //   //     console.log("true detected");
+  //   //     return setAnimateBox(`animate ${x}`);
+  //   //   } else {
+  //   //     setAnimateBox("inactive");
+  //   //   }
+  //   // }
+  // }, [globalContext.animateArray]);
+
+  useEffect(() => {
+    console.log("testing timeout state setting");
+  }, [globalContext.testArray]);
 
   return (
     <>
