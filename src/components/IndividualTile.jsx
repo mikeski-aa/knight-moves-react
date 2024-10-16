@@ -83,11 +83,45 @@ function IndividualTile(props) {
     }
   }, [globalContext.testArray]);
 
+  const handleDragEnter = () => {
+    globalContext.handleBoardReset();
+    console.log(props.item, globalContext.dragItem);
+    globalContext.setCurrentlyOver(props.item);
+    if (globalContext.dragItem === "start") {
+      setSelectedBox("startLocation");
+      globalContext.setStartCoord(props.item);
+    } else if (globalContext.dragItem === "end") {
+      setSelectedBox("endLocation");
+      globalContext.setEndCoord(props.item);
+    }
+  };
+
+  const handleDragExit = (e) => {
+    console.log("exitting now");
+    e.preventDefault();
+    setSelectedBox(undefined);
+  };
+
+  const handleDrop = () => {
+    console.log(props.item);
+    if (globalContext.dragItem === "start") {
+      setSelectedBox("startLocation");
+      globalContext.setStartCoord(props.item);
+    } else if (globalContext.dragItem === "end") {
+      setSelectedBox("endLocation");
+      globalContext.setEndCoord(props.item);
+    }
+  };
+
   return (
     <>
       <div
         className={`tile ${boxType} ${selectedBox} ${animateBox}`}
+        onDragEnter={handleDragEnter}
+        onDrop={handleDrop}
+        onDragLeave={(e) => handleDragExit(e)}
         onClick={handleBoxClick}
+        onDragOver={(e) => e.preventDefault(e)}
       >
         {selectedBox === "startLocation" ? "S" : undefined}
         {selectedBox === "endLocation" ? "E" : undefined}

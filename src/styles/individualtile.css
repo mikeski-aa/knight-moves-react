@@ -1,4 +1,5 @@
-.tile {
+.tile,
+.dragBox {
   height: 5vw;
   width: 5vw;
   display: flex;
@@ -60,7 +61,8 @@
 
 @media (max-width: 500px) {
   .tile,
-  .numberBorderItem {
+  .numberBorderItem,
+  .dragBox {
     height: 8vw;
     width: 8vw;
   }
@@ -68,7 +70,8 @@
 
 @media (min-width: 1000px) {
   .tile,
-  .numberBorderItem {
+  .numberBorderItem,
+  .dragBox {
     height: 3vw;
     width: 3vw;
   }

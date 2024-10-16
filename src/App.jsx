@@ -16,6 +16,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [steps, setSteps] = useState([]);
   const [noOfMoves, setNoOfMoves] = useState(0);
+
   const letters = {
     0: "a",
     1: "b",
@@ -26,6 +27,8 @@ function App() {
     6: "g",
     7: "h",
   };
+  const [dragItem, setDragItem] = useState(null);
+  const [currentlyOver, setCurrentlyOver] = useState(null);
 
   // it would be super cool if a brief animation played showing all moves that were tried!!!
   const handleGameStart = () => {
@@ -100,6 +103,20 @@ function App() {
     }
   };
 
+  const handleDragStartStart = (e) => {
+    setDragItem("start");
+  };
+
+  const handleDragStartEnd = (e) => {
+    setDragItem("end");
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    console.log("test");
+    console.log(currentlyOver);
+  };
+
   return (
     <div className="mainContainer">
       <div className="heading">Knight moves</div>
@@ -110,23 +127,28 @@ function App() {
         through real possible coordinates,{" "}
         <b>
           some animations may take a while to complete due to large move count!
-        </b>
+        </b>{" "}
+        PC users can use drag and drop instead of clicking!
       </div>
-      {/* <div className="coordSelected">
-        <div className="testStart">
-          <div className="textCoord">Start coord:</div>{" "}
-          <div className="coordDiv">
-            [{startCoord[0]}, {startCoord[1]}]
-          </div>
+      <div className="draggables">
+        <div
+          className="dragBox start"
+          draggable
+          onDragStart={(e) => handleDragStartStart(e)}
+          onDrop={(e) => handleDrop(e)}
+        >
+          S
         </div>
-        <div className="testEnd">
-          <div className="textCoord">End coord:</div>
-          <div className="coordDiv">
-            {" "}
-            [{endCoord[0]}, {endCoord[1]}]
-          </div>
+        - PC users can drag us over the board -
+        <div
+          className="dragBox end"
+          draggable
+          onDragStart={(e) => handleDragStartEnd(e)}
+          onDrop={(e) => handleDrop(e)}
+        >
+          E
         </div>
-      </div> */}
+      </div>
 
       <div className="smallBtnDiv">
         <button className="startBtn" onClick={() => handleGameStart()}>
@@ -153,6 +175,8 @@ function App() {
           setCount,
           running,
           handleBoardReset,
+          dragItem,
+          setCurrentlyOver,
         }}
       >
         <div className="gameboard">
