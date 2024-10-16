@@ -1,31 +1,75 @@
 .tile {
   height: 5vw;
   width: 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+}
+
+.tile:hover {
+  cursor: pointer;
 }
 
 .startLocation,
 .startLocation.animate.zero {
-  background-color: rgba(0, 255, 0, 0.523);
-  /* border: 2px solid green; */
+  background-color: rgb(17, 214, 17);
 }
 
 .endLocation,
 .endLocation.animate {
-  background-color: rgba(251, 83, 83, 0.559);
+  background-color: rgb(203, 36, 36);
 }
 
-/* .animate {
-  background-color: rgb(255, 186, 47);
-} */
-
-.startLocation.animate.zero {
+.animate.one {
+  background-color: rgb(115, 214, 17);
+}
+.animate.two {
+  background-color: rgb(142, 214, 17);
 }
 
-.animate {
-  background-image: linear-gradient(rgb(255, 0, 0), rgb(43, 255, 0));
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed; /* <- here it is */
-  width: 5vw;
-  height: 5vw;
+.animate.three {
+  background-color: rgb(214, 207, 17);
+}
+
+.animate.four {
+  background-color: rgb(214, 125, 17);
+}
+.animate.five {
+  background-color: rgb(214, 63, 17);
+}
+
+.animate.six {
+  background-color: rgb(214, 40, 17);
+}
+
+.startLocation.animate.one,
+.startLocation.animate.two,
+.startLocation.animate.three,
+.startLocation.animate.four,
+.startLocation.animate.five,
+.startLocation.animate.six {
+}
+
+.heading {
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+@media (max-width: 500px) {
+  .tile,
+  .numberBorderItem {
+    height: 8vw;
+    width: 8vw;
+  }
+}
+
+@media (min-width: 1000px) {
+  .tile,
+  .numberBorderItem {
+    height: 3vw;
+    width: 3vw;
+  }
 }

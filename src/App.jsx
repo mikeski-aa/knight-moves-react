@@ -12,38 +12,50 @@ function App() {
   const [activeTarget, setActiveTarget] = useState(false);
   const [startText, setStartText] = useState("Set start coord");
   const [endText, setEndText] = useState("Set end coord");
-  const [animateArray, setAnimateArray] = useState([]);
   const [testArray, setTestArray] = useState([]);
+  const [disableStart, setDisableStart] = useState(false);
 
   // it would be super cool if a brief animation played showing all moves that were tried!!!
   const handleGameStart = () => {
-    let result = initialize(startCoord, endCoord, startCoord);
-    let fakeObject = {
-      parents: result.stepsTaken,
-    };
-    let queue = result.queue;
-    queue.push(fakeObject);
-    console.log(result);
-    console.log(fakeObject);
-    console.log(result.queue);
-    setAnimateArray(queue);
+    if (!disableStart) {
+      setDisableStart(true);
+      let result = initialize(startCoord, endCoord, startCoord);
+      let fakeObject = {
+        parents: result.stepsTaken,
+      };
+      let queue = result.queue;
+      let index = 0;
+      queue.push(fakeObject);
+      console.log(result);
+      console.log(fakeObject);
+      console.log(result.queue);
 
-    let index = 0;
+      setActiveTarget(false);
+      setStartText("Set start coord");
+      setActiveStart(false);
+      setEndText("Set end coord");
 
-    function recursivelyGoThroughArray() {
-      setTestArray(queue[index].parents);
+      // probably should refactor to take this out
+      function recursivelyGoThroughArray() {
+        setTestArray(queue[index].parents);
 
-      index++;
+        index++;
 
-      if (index < queue.length) {
-        setTimeout(recursivelyGoThroughArray, 0);
+        if (index < queue.length) {
+          setTimeout(recursivelyGoThroughArray, 0);
+        } else {
+          setDisableStart(false);
+        }
       }
-    }
 
-    recursivelyGoThroughArray();
+      recursivelyGoThroughArray();
+    } else {
+      alert("already running!");
+    }
   };
 
   const handleStartClick = () => {
+    setTestArray([]);
     if (activeTarget) {
       setActiveTarget(false);
       setStartText("Confirm coordinates");
@@ -61,6 +73,7 @@ function App() {
   };
 
   const handleEndClick = () => {
+    setTestArray([]);
     if (activeStart) {
       setActiveStart(false);
       setStartText("Set start coord");
@@ -80,7 +93,11 @@ function App() {
   return (
     <div className="mainContainer">
       <div className="heading">Knight moves</div>
-      <div className="howto">Click on chessboard bla bla bla</div>
+      <div className="howto">
+        Select starting and ending coordinates. Click either set start coord or
+        set end coord and then pick the tile from the board. Once you are happy
+        click start.
+      </div>
       <div className="coordSelected">
         <div className="testStart">
           <div className="textCoord">Start coord:</div>{" "}
@@ -101,14 +118,8 @@ function App() {
         <button className="endSet" onClick={handleEndClick}>
           {endText}
         </button>
-        {/* <div className={`startC`}>
-          <input placeholder="Starting coordinate" type="number"></input>
-        </div>
-        <div className={`startC`}>
-          <input placeholder="Ending coordinate"></input>
-        </div> */}
       </div>
-      <button className="goGame" onClick={() => handleGameStart()}>
+      <button className="startBtn" onClick={() => handleGameStart()}>
         Start
       </button>
       <GlobalContext.Provider
@@ -121,13 +132,10 @@ function App() {
           setActiveStart,
           activeTarget,
           setActiveTarget,
-          animateArray,
-          setAnimateArray,
           testArray,
           setTestArray,
         }}
       >
-        <div className="horse" draggable></div>
         <div className="gameboard">
           <Chessboard />
         </div>

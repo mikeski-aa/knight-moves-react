@@ -75,7 +75,8 @@ function IndividualTile(props) {
         className={`tile ${boxType} ${selectedBox} ${animateBox}`}
         onClick={handleBoxClick}
       >
-        {props.item}
+        {selectedBox === "startLocation" ? "S" : undefined}
+        {selectedBox === "endLocation" ? "E" : undefined}
       </div>
     </>
   );

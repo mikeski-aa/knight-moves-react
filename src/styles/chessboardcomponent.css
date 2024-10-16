@@ -31,6 +31,8 @@
 .numberBorderItem {
   width: 5vw;
   height: 5vw;
+  font-weight: 700;
+  font-size: 1.3rem;
 }
 
 .testBoard {
@@ -59,12 +61,6 @@
   justify-content: center;
 }
 
-.horse {
-  width: 30px;
-  height: 30px;
-  background-color: green;
-}
-
 .coordSelected {
   display: flex;
   flex-direction: column;
@@ -75,4 +71,8 @@
   width: 200px;
   display: flex;
   justify-content: space-between;
+}
+
+.howto {
+  text-align: center;
 }
