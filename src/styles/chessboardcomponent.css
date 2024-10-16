@@ -2,7 +2,7 @@
   background-color: rgb(214, 83, 83);
   display: flex;
   align-items: center;
-  /* width: fit-content; */
+  width: fit-content;
 }
 
 .verticalNumber {
@@ -28,10 +28,10 @@
   display: flex;
 }
 
-.box {
-  width: 30px;
-  height: 30px;
-  background-color: green;
+.box,
+.numberBorderItem {
+  width: 5vw;
+  height: 5vw;
 }
 
 .testBoard {
@@ -54,7 +54,8 @@
 }
 
 .numberBorderItem {
-  width: 30px;
-  height: 30px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -13,9 +13,15 @@ function IndividualBox(props) {
     boxType = "even";
   }
 
+  const handleBoxClick = () => {
+    console.log(props.item);
+  };
+
   return (
     <>
-      <div className={`box ${boxType}`}>{props.item}</div>
+      <div className={`box ${boxType}`} onClick={handleBoxClick}>
+        {props.item}
+      </div>
     </>
   );
 }
