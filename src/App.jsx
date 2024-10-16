@@ -104,11 +104,15 @@ function App() {
     <div className="mainContainer">
       <div className="heading">Knight moves</div>
       <div className="howto">
-        Select starting and ending coordinates. Click either set start coord or
-        set end coord and then pick the tile from the board. Once you are happy
-        click start.
+        Click the board to select start and end coordinates. Clicks alternate
+        selection. Results will show the shortest path possible to coordinate,
+        if there are multiple paths, only one will be shown. Animation goes
+        through real possible coordinates,{" "}
+        <b>
+          some animations may take a while to complete due to large move count!
+        </b>
       </div>
-      <div className="coordSelected">
+      {/* <div className="coordSelected">
         <div className="testStart">
           <div className="textCoord">Start coord:</div>{" "}
           <div className="coordDiv">
@@ -122,11 +126,12 @@ function App() {
             [{endCoord[0]}, {endCoord[1]}]
           </div>
         </div>
-      </div>
-      <button className="startBtn" onClick={() => handleGameStart()}>
-        Start
-      </button>
+      </div> */}
+
       <div className="smallBtnDiv">
+        <button className="startBtn" onClick={() => handleGameStart()}>
+          Start
+        </button>
         <button className="startBtn" onClick={() => handleDelayToggle()}>
           {delay ? "Animation: ON" : "Animation: OFF"}
         </button>
@@ -159,8 +164,10 @@ function App() {
               Shortest path:{" "}
               {steps.map((item, index) => (
                 <div key={index}>
+                  &nbsp;
                   {letters[item[1]]}
                   {item[0] + 1}
+                  {index === steps.length - 1 ? null : ","}
                 </div>
               ))}
             </div>

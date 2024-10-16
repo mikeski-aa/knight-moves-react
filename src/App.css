@@ -12,3 +12,36 @@
 .gameboard {
   background-color: rgb(91, 91, 248);
 }
+
+.shortestPath {
+  display: flex;
+}
+
+button {
+  border: none;
+  background: none;
+  border: 2px solid white;
+  border-radius: 25px;
+  padding: 10px;
+  background-color: rgba(48, 48, 48, 0.982);
+  color: white;
+  font-weight: 600;
+  transition-duration: 0.3s;
+}
+
+button:hover {
+  cursor: pointer;
+  color: rgba(48, 48, 48, 0.982);
+  background-color: white;
+}
+
+.smallBtnDiv {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (min-width: 500px) {
+  .howto {
+    max-width: 80vw;
+  }
+}
