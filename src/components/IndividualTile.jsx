@@ -92,12 +92,26 @@ function IndividualTile(props) {
         props.item[1] === globalContext.endCoord[1] &&
         globalContext.dragItem === "start")
     ) {
-      console.log("DRAG you are dragging over the fucking thing!");
-      e.preventDefault();
-      globalContext.handleBoardReset();
+      console.log(
+        "YOU ARE DRAGGIN " + globalContext.dragItem + " OVER " + selectedBox
+      );
+      if (globalContext.dragItem === "start") {
+        globalContext.setStartCoord(globalContext.dragStartLocStart);
+        globalContext.setEndCoord(globalContext.dragStartLocEnd);
+      } else if (globalContext.dragItem === "end") {
+        globalContext.setEndCoord(globalContext.dragStartLocEnd);
+        globalContext.setStartCoord(globalContext.dragStartLocStart);
+      }
+      handleDragExit(e);
       return null;
     }
 
+    console.log("FUCK WE PROCEED");
+    console.log("starting location of drag: " + globalContext.dragStartLoc);
+    console.log("current target " + props.item);
+    console.log(
+      "being draggon " + globalContext.dragItem + " OVER " + selectedBox
+    );
     globalContext.handleBoardReset();
     globalContext.setCurrentlyOver(props.item);
     if (globalContext.dragItem === "start") {
@@ -126,13 +140,15 @@ function IndividualTile(props) {
       console.log("DROP you are dragging over the fucking thing!");
       console.log("dropped");
       if (globalContext.dragItem === "start") {
-        globalContext.setStartCoord(globalContext.dragStartLoc);
+        globalContext.setStartCoord(globalContext.dragStartLocStart);
+        globalContext.setEndCoord(globalContext.dragStartLocEnd);
       } else if (globalContext.dragItem === "end") {
-        globalContext.setEndCoord(globalContext.dragStartLoc);
+        globalContext.setEndCoord(globalContext.dragStartLocEnd);
+        globalContext.setStartCoord(globalContext.dragStartLocStart);
       }
       return null;
     }
-
+    console.log("FUCK WE PROCEED WITH DROP");
     if (globalContext.dragItem === "start") {
       if (globalContext.startCoord != props.item) {
         setSelectedBox("startLocation");
@@ -147,11 +163,20 @@ function IndividualTile(props) {
   };
 
   const handleDragStart = (e) => {
-    globalContext.setDragStartLoc(props.item);
+    console.log(selectedBox);
+
+    if (typeof selectedBox === "undefined") {
+      return e.preventDefault();
+    }
+
     if (selectedBox === "startLocation") {
       globalContext.setDragItem("start");
+      globalContext.setDragStartLocStart(props.item);
+      globalContext.setDragStartLocEnd(globalContext.endCoord);
     } else if (selectedBox === "endLocation") {
       globalContext.setDragItem("end");
+      globalContext.setDragStartLocEnd(props.item);
+      globalContext.setDragStartLocStart(globalContext.startCoord);
     }
   };
 
