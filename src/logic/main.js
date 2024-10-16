@@ -21,7 +21,7 @@ function checkPrevMoves(inputValidMoves, visitedMoves) {
 // main function utilizing BFS to find target
 // do I need to remove moves? Not sure with BFS. It works with it, so we leave it in.
 
-function knightMoves(target, moveCount, queue) {
+function knightMoves(target, moveCount, queue, sCoord, tCoord) {
   if (queue[0].value[0] === target[0] && queue[0].value[1] === target[1]) {
     console.log("VALUE FOUND!!!!!");
     console.log(`Start coordinates: ${sCoord}, target coordinate: ${tCoord}`);
@@ -92,7 +92,7 @@ function initialize(start, target) {
   console.log("queue is");
   console.log(queue);
 
-  knightMoves(tar, 0, queue, testRoot);
+  knightMoves(tar, 0, queue, start, target);
 }
 
 // let sCoord = [0, 0];

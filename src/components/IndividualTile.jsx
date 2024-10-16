@@ -1,4 +1,8 @@
+import { useContext } from "react";
+import { GlobalContext } from "../App";
+
 function IndividualTile(props) {
+  const globalContext = useContext(GlobalContext);
   let stringSum = props.item[0] + props.item[1];
   let boxType = undefined;
   // scuffed logic
@@ -14,7 +18,7 @@ function IndividualTile(props) {
   }
 
   const handleBoxClick = () => {
-    console.log(props.item);
+    globalContext.setStartCoord(props.item);
   };
 
   return (
