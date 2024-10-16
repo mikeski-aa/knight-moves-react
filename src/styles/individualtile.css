@@ -6,15 +6,26 @@
 .startLocation,
 .startLocation.animate.zero {
   background-color: rgba(0, 255, 0, 0.523);
+  /* border: 2px solid green; */
 }
 
-.endLocation {
+.endLocation,
+.endLocation.animate {
   background-color: rgba(251, 83, 83, 0.559);
 }
 
-.animate {
+/* .animate {
   background-color: rgb(255, 186, 47);
-}
+} */
 
 .startLocation.animate.zero {
+}
+
+.animate {
+  background-image: linear-gradient(rgb(255, 0, 0), rgb(43, 255, 0));
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* <- here it is */
+  width: 5vw;
+  height: 5vw;
 }
