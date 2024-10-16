@@ -85,7 +85,6 @@ function IndividualTile(props) {
 
   const handleDragEnter = () => {
     globalContext.handleBoardReset();
-    console.log(props.item, globalContext.dragItem);
     globalContext.setCurrentlyOver(props.item);
     if (globalContext.dragItem === "start") {
       setSelectedBox("startLocation");
@@ -97,7 +96,6 @@ function IndividualTile(props) {
   };
 
   const handleDragExit = (e) => {
-    console.log("exitting now");
     e.preventDefault();
     setSelectedBox(undefined);
   };
@@ -113,6 +111,14 @@ function IndividualTile(props) {
     }
   };
 
+  const handleDragStart = (e) => {
+    if (selectedBox === "startLocation") {
+      globalContext.setDragItem("start");
+    } else if (selectedBox === "endLocation") {
+      globalContext.setDragItem("end");
+    }
+  };
+
   return (
     <>
       <div
@@ -122,6 +128,8 @@ function IndividualTile(props) {
         onDragLeave={(e) => handleDragExit(e)}
         onClick={handleBoxClick}
         onDragOver={(e) => e.preventDefault(e)}
+        draggable
+        onDragStart={(e) => handleDragStart(e)}
       >
         {selectedBox === "startLocation" ? "S" : undefined}
         {selectedBox === "endLocation" ? "E" : undefined}

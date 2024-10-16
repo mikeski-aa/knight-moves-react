@@ -176,6 +176,7 @@ function App() {
           running,
           handleBoardReset,
           dragItem,
+          setDragItem,
           setCurrentlyOver,
         }}
       >
