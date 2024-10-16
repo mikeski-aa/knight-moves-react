@@ -3,8 +3,9 @@
   width: 5vw;
 }
 
-.startLocation {
-  background-color: rgba(66, 187, 66, 0.523);
+.startLocation,
+.startLocation.animate.zero {
+  background-color: rgba(0, 255, 0, 0.523);
 }
 
 .endLocation {
@@ -12,5 +13,8 @@
 }
 
 .animate {
-  background-color: rgba(172, 255, 47, 0.494);
+  background-color: rgb(255, 186, 47);
+}
+
+.startLocation.animate.zero {
 }

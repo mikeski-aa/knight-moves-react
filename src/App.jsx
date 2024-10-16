@@ -5,17 +5,9 @@ import { initialize } from "./logic/main";
 
 export const GlobalContext = createContext();
 
-function delay(i) {
-  setTimeout(() => {
-    console.log("hello");
-  }, 5000);
-}
-
-var array = [1, 2, 3, 4, 5];
-
 function App() {
   const [startCoord, setStartCoord] = useState([0, 0]);
-  const [endCoord, setEndCoord] = useState([7, 7]);
+  const [endCoord, setEndCoord] = useState([2, 1]);
   const [activeStart, setActiveStart] = useState(false);
   const [activeTarget, setActiveTarget] = useState(false);
   const [startText, setStartText] = useState("Set start coord");
@@ -26,8 +18,11 @@ function App() {
   // it would be super cool if a brief animation played showing all moves that were tried!!!
   const handleGameStart = () => {
     let result = initialize(startCoord, endCoord, startCoord);
+    let fakeObject = {
+      parents: [result.parents],
+    };
     console.log(result);
-
+    console.log(fakeObject);
     console.log(result.queue);
     setAnimateArray(result.queue);
     // setAnimateArray(result.queue[5].parents);
@@ -39,11 +34,19 @@ function App() {
     //   delay();
     // }
 
-    for (let i = 0; i < array.length; i++) {
-      setTimeout(() => {
-        console.log(array[i]);
-      }, 1000);
+    let index = 0;
+    let array = [1, 2, 3, 4];
+    function recursion() {
+      setTestArray(result.queue[index].parents);
+
+      index++;
+
+      if (index < result.queue.length) {
+        setTimeout(recursion, 1);
+      }
     }
+
+    recursion();
   };
 
   // useEffect(() => {

@@ -6,6 +6,18 @@ function IndividualTile(props) {
   const globalContext = useContext(GlobalContext);
   const [selectedBox, setSelectedBox] = useState(undefined);
   const [animateBox, setAnimateBox] = useState(undefined);
+  const hackarray = [
+    "zero",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+  ];
   let stringSum = props.item[0] + props.item[1];
   let boxType = undefined;
   // scuffed logic
@@ -60,21 +72,19 @@ function IndividualTile(props) {
   //     }
   //   }
 
-  //   // for (let x = 0; x < globalContext.animateArray.length; x++) {
-  //   //   if (
-  //   //     globalContext.animateArray[x][0] === props.item[0] &&
-  //   //     globalContext.animateArray[x][1] === props.item[1]
-  //   //   ) {
-  //   //     console.log("true detected");
-  //   //     return setAnimateBox(`animate ${x}`);
-  //   //   } else {
-  //   //     setAnimateBox("inactive");
-  //   //   }
-  //   // }
   // }, [globalContext.animateArray]);
 
   useEffect(() => {
-    console.log("testing timeout state setting");
+    for (let x = 0; x < globalContext.testArray.length; x++) {
+      if (
+        globalContext.testArray[x][0] === props.item[0] &&
+        globalContext.testArray[x][1] === props.item[1]
+      ) {
+        return setAnimateBox(`animate ${hackarray[x]}`);
+      } else {
+        setAnimateBox("inactive");
+      }
+    }
   }, [globalContext.testArray]);
 
   return (
