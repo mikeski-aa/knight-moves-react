@@ -56,24 +56,6 @@ function IndividualTile(props) {
     }
   }, [globalContext.startCoord, globalContext.endCoord]);
 
-  // this useeffect should handle the "animation"
-  // useEffect(() => {
-  //   for (let x = 0; x < globalContext.animateArray.length; x++) {
-  //     for (let y = 0; y < globalContext.animateArray[x].parents.length; y++) {
-  //       if (
-  //         globalContext.animateArray[x].parents[y][0] === props.item[0] &&
-  //         globalContext.animateArray[x].parents[y][1] === props.item[1]
-  //       ) {
-  //         console.log("true detected");
-  //         return setAnimateBox(`animate ${x}`);
-  //       } else {
-  //         setAnimateBox("inactive");
-  //       }
-  //     }
-  //   }
-
-  // }, [globalContext.animateArray]);
-
   useEffect(() => {
     for (let x = 0; x < globalContext.testArray.length; x++) {
       if (

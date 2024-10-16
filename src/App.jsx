@@ -7,7 +7,7 @@ export const GlobalContext = createContext();
 
 function App() {
   const [startCoord, setStartCoord] = useState([0, 0]);
-  const [endCoord, setEndCoord] = useState([2, 1]);
+  const [endCoord, setEndCoord] = useState([7, 4]);
   const [activeStart, setActiveStart] = useState(false);
   const [activeTarget, setActiveTarget] = useState(false);
   const [startText, setStartText] = useState("Set start coord");
@@ -27,41 +27,28 @@ function App() {
     console.log(fakeObject);
     console.log(result.queue);
     setAnimateArray(queue);
-    // setAnimateArray(result.queue[5].parents);
-    // for (let x = 0; x < result.queue.length; x++) {
-    //   console.log(result.queue[5].parents);
-    // }
-
-    // for (let x = 0; x < result.queue.length; x++) {
-    //   delay();
-    // }
 
     let index = 0;
-    let array = [1, 2, 3, 4];
-    function recursion() {
+
+    function recursivelyGoThroughArray() {
       setTestArray(queue[index].parents);
 
       index++;
 
       if (index < queue.length) {
-        setTimeout(recursion, 0);
+        setTimeout(recursivelyGoThroughArray, 0);
       }
     }
 
-    recursion();
+    recursivelyGoThroughArray();
   };
-
-  // useEffect(() => {
-  //   for (let x = 0; x < animateArray.length; x++) {
-  //     setInterval(() => {
-  //       setTestArray(animateArray[x].parents);
-  //     }, 5000);
-  //   }
-  // }, [animateArray]);
 
   const handleStartClick = () => {
     if (activeTarget) {
-      return null;
+      setActiveTarget(false);
+      setStartText("Confirm coordinates");
+      setActiveStart(true);
+      setEndText("Set end coord");
     }
 
     if (!activeStart) {
@@ -75,7 +62,10 @@ function App() {
 
   const handleEndClick = () => {
     if (activeStart) {
-      return null;
+      setActiveStart(false);
+      setStartText("Set start coord");
+      setActiveTarget(true);
+      setEndText("Confirm coordinates");
     }
 
     if (!activeTarget) {
