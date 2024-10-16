@@ -12,7 +12,6 @@ function App() {
         array.push(`${i}${j}`);
       }
     }
-    console.log(array);
     return array;
   };
 

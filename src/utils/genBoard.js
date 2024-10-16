@@ -5,7 +5,6 @@ const generateBoardArray = () => {
       array.push([i, j]);
     }
   }
-  console.log(array);
   return array;
 };
 
