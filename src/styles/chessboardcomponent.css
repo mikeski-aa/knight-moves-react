@@ -1,0 +1,27 @@
+.chessboardComponent {
+  background-color: rgb(214, 83, 83);
+  display: flex;
+  width: fit-content;
+}
+
+.verticalNumber {
+  display: flex;
+  flex-direction: column;
+}
+
+.horizontalLetter {
+  display: flex;
+}
+
+.horizontalDiv {
+  display: flex;
+  flex-direction: column;
+  width: 450px;
+  justify-content: space-between;
+}
+
+.gameBoardMain {
+  background-color: rgb(47, 172, 255);
+  width: 50px;
+  height: 50px;
+}

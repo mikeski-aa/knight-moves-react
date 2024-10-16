@@ -1,3 +1,5 @@
+import "../styles/chessboardcomponent.css";
+
 function Chessboard() {
   const letterArray = ["a", "b", "c", "d", "e", "f", "g", "h"];
   const numberArray = [1, 2, 3, 4, 5, 6, 7, 8];
