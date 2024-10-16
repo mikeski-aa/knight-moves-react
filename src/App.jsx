@@ -14,6 +14,18 @@ function App() {
   const [running, setRunning] = useState(false);
   const [delay, setDelay] = useState(true);
   const [count, setCount] = useState(0);
+  const [steps, setSteps] = useState([]);
+  const [noOfMoves, setNoOfMoves] = useState(0);
+  const letters = {
+    0: "a",
+    1: "b",
+    2: "c",
+    3: "d",
+    4: "e",
+    5: "f",
+    6: "g",
+    7: "h",
+  };
 
   // it would be super cool if a brief animation played showing all moves that were tried!!!
   const handleGameStart = () => {
@@ -26,6 +38,10 @@ function App() {
       let queue = result.queue;
       let index = 0;
       queue.push(fakeObject);
+      setSteps(result.stepsTaken);
+      // -1 because it counts initial location as move
+      setNoOfMoves(result.numberOfMoves - 1);
+      console.log(result.stepsTaken[1][0], result.stepsTaken[1][1]);
 
       // probably should refactor to take this out
       if (delay) {
@@ -111,11 +127,8 @@ function App() {
         Start
       </button>
       <div className="smallBtnDiv">
-        <button className="startBtn" onClick={() => handleBoardReset()}>
-          Clear previous moves
-        </button>
         <button className="startBtn" onClick={() => handleDelayToggle()}>
-          {delay ? "Turn animations off" : "Turn animations  on"}
+          {delay ? "Animation: ON" : "Animation: OFF"}
         </button>
       </div>
 
@@ -140,7 +153,21 @@ function App() {
         <div className="gameboard">
           <Chessboard />
         </div>
-        <div className="results"></div>
+        <div className="results">
+          {steps.length > 1 ? (
+            <div className="shortestPath">
+              Shortest path:{" "}
+              {steps.map((item, index) => (
+                <div key={index}>
+                  {letters[item[1]]}
+                  {item[0] + 1}
+                </div>
+              ))}
+            </div>
+          ) : null}
+
+          <div className="stepsTaken">Moves made: {noOfMoves}</div>
+        </div>
       </GlobalContext.Provider>
     </div>
   );
