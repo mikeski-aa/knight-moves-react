@@ -85,8 +85,12 @@ function IndividualTile(props) {
 
   const handleDragEnter = (e) => {
     if (
-      props.item[0] === globalContext.startCoord[0] &&
-      props.item[1] === globalContext.startCoord[1]
+      (props.item[0] === globalContext.startCoord[0] &&
+        props.item[1] === globalContext.startCoord[1] &&
+        globalContext.dragItem === "end") ||
+      (props.item[0] === globalContext.endCoord[0] &&
+        props.item[1] === globalContext.endCoord[1] &&
+        globalContext.dragItem === "start")
     ) {
       console.log("DRAG you are dragging over the fucking thing!");
       e.preventDefault();
@@ -112,8 +116,12 @@ function IndividualTile(props) {
 
   const handleDrop = (e) => {
     if (
-      props.item[0] === globalContext.startCoord[0] &&
-      props.item[1] === globalContext.startCoord[1]
+      (props.item[0] === globalContext.startCoord[0] &&
+        props.item[1] === globalContext.startCoord[1] &&
+        globalContext.dragItem === "end") ||
+      (props.item[0] === globalContext.endCoord[0] &&
+        props.item[1] === globalContext.endCoord[1] &&
+        globalContext.dragItem === "start")
     ) {
       console.log("DROP you are dragging over the fucking thing!");
       console.log("dropped");
