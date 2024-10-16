@@ -20,7 +20,7 @@ function App() {
     <div className="mainContainer">
       <div className="heading">Knight moves</div>
       <div className="howto">Click on chessboard bla bla bla</div>
-      <div className="gameboard" onClick={generateBoard}>
+      <div className="gameboard">
         <Chessboard />
       </div>
       <div className="results"></div>

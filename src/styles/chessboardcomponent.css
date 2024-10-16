@@ -24,4 +24,5 @@
   background-color: rgb(47, 172, 255);
   width: 50px;
   height: 50px;
+  display: flex;
 }
