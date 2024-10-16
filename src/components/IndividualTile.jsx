@@ -1,5 +1,6 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../App";
+import "../styles/individualtile.css";
 
 function IndividualTile(props) {
   const globalContext = useContext(GlobalContext);
@@ -26,11 +27,19 @@ function IndividualTile(props) {
     }
   };
 
-  useState(() => {
-    if (globalContext.startCoord === props.item) {
+  useEffect(() => {
+    if (
+      globalContext.startCoord[0] === props.item[0] &&
+      globalContext.startCoord[1] === props.item[1]
+    ) {
       setSelectedBox("startLocation");
-    } else if (globalContext.endCoord === props.item) {
+    } else if (
+      globalContext.endCoord[0] === props.item[0] &&
+      globalContext.endCoord[1] === props.item[1]
+    ) {
       setSelectedBox("endLocation");
+    } else {
+      setSelectedBox(undefined);
     }
   }, [globalContext.startCoord, globalContext.endCoord]);
 

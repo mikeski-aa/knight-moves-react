@@ -1,5 +1,5 @@
 .chessboardComponent {
-  background-color: rgb(214, 83, 83);
+  background-color: rgba(214, 83, 83, 0.185);
   display: flex;
   align-items: center;
   width: fit-content;
@@ -28,7 +28,6 @@
   display: flex;
 }
 
-.tile,
 .numberBorderItem {
   width: 5vw;
   height: 5vw;

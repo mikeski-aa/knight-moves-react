@@ -1,0 +1,12 @@
+.tile {
+  height: 5vw;
+  width: 5vw;
+}
+
+.startLocation {
+  background-color: rgb(66, 187, 66);
+}
+
+.endLocation {
+  background-color: rgb(251, 83, 83);
+}

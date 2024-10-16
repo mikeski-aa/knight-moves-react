@@ -13,11 +13,12 @@ function App() {
   const [startText, setStartText] = useState("Set start coord");
   const [endText, setEndText] = useState("Set end coord");
 
-  let sCoord = [0, 0];
-  let tCoord = [0, 7];
-
   const handleGameStart = () => {
-    initialize(startCoord, endCoord, startCoord);
+    console.log(startCoord);
+    console.log(endCoord);
+    let path = initialize(startCoord, endCoord, startCoord);
+    // console.log(initialize(startCoord, endCoord, startCoord));
+    console.log(path);
   };
 
   const handleStartClick = () => {
