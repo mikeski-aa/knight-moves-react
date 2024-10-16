@@ -16,6 +16,7 @@ function App() {
   const [count, setCount] = useState(0);
   const [steps, setSteps] = useState([]);
   const [noOfMoves, setNoOfMoves] = useState(0);
+  const [dragStartLoc, setDragStartLoc] = useState([]);
 
   const letters = {
     0: "a",
@@ -178,6 +179,8 @@ function App() {
           dragItem,
           setDragItem,
           setCurrentlyOver,
+          dragStartLoc,
+          setDragStartLoc,
         }}
       >
         <div className="gameboard">

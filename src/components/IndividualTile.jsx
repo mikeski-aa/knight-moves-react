@@ -83,7 +83,17 @@ function IndividualTile(props) {
     }
   }, [globalContext.testArray]);
 
-  const handleDragEnter = () => {
+  const handleDragEnter = (e) => {
+    if (
+      props.item[0] === globalContext.startCoord[0] &&
+      props.item[1] === globalContext.startCoord[1]
+    ) {
+      console.log("DRAG you are dragging over the fucking thing!");
+      e.preventDefault();
+      globalContext.handleBoardReset();
+      return null;
+    }
+
     globalContext.handleBoardReset();
     globalContext.setCurrentlyOver(props.item);
     if (globalContext.dragItem === "start") {
@@ -100,18 +110,36 @@ function IndividualTile(props) {
     setSelectedBox(undefined);
   };
 
-  const handleDrop = () => {
-    console.log(props.item);
+  const handleDrop = (e) => {
+    if (
+      props.item[0] === globalContext.startCoord[0] &&
+      props.item[1] === globalContext.startCoord[1]
+    ) {
+      console.log("DROP you are dragging over the fucking thing!");
+      console.log("dropped");
+      if (globalContext.dragItem === "start") {
+        globalContext.setStartCoord(globalContext.dragStartLoc);
+      } else if (globalContext.dragItem === "end") {
+        globalContext.setEndCoord(globalContext.dragStartLoc);
+      }
+      return null;
+    }
+
     if (globalContext.dragItem === "start") {
-      setSelectedBox("startLocation");
-      globalContext.setStartCoord(props.item);
+      if (globalContext.startCoord != props.item) {
+        setSelectedBox("startLocation");
+        globalContext.setStartCoord(props.item);
+      }
     } else if (globalContext.dragItem === "end") {
-      setSelectedBox("endLocation");
-      globalContext.setEndCoord(props.item);
+      if (globalContext.endCoord != props.item) {
+        setSelectedBox("endLocation");
+        globalContext.setEndCoord(props.item);
+      }
     }
   };
 
   const handleDragStart = (e) => {
+    globalContext.setDragStartLoc(props.item);
     if (selectedBox === "startLocation") {
       globalContext.setDragItem("start");
     } else if (selectedBox === "endLocation") {
@@ -123,8 +151,8 @@ function IndividualTile(props) {
     <>
       <div
         className={`tile ${boxType} ${selectedBox} ${animateBox}`}
-        onDragEnter={handleDragEnter}
-        onDrop={handleDrop}
+        onDragEnter={(e) => handleDragEnter(e)}
+        onDrop={(e) => handleDrop(e)}
         onDragLeave={(e) => handleDragExit(e)}
         onClick={handleBoxClick}
         onDragOver={(e) => e.preventDefault(e)}
