@@ -132,7 +132,7 @@ function App() {
         </b>{" "}
         PC users can use drag and drop instead of clicking!
       </div>
-      <div className="draggables">
+      {/* <div className="draggables">
         <div
           className="dragBox start"
           draggable
@@ -150,7 +150,7 @@ function App() {
         >
           E
         </div>
-      </div>
+      </div> */}
 
       <div className="smallBtnDiv">
         <button className="startBtn" onClick={() => handleGameStart()}>
