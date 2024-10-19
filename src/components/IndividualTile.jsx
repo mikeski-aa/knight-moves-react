@@ -106,7 +106,7 @@ function IndividualTile(props) {
       return null;
     }
 
-    console.log("FUCK WE PROCEED");
+    console.log("WE PROCEED");
     console.log("starting location of drag: " + globalContext.dragStartLoc);
     console.log("current target " + props.item);
     console.log(
@@ -137,7 +137,7 @@ function IndividualTile(props) {
         props.item[1] === globalContext.endCoord[1] &&
         globalContext.dragItem === "start")
     ) {
-      console.log("DROP you are dragging over the fucking thing!");
+      console.log("DROP you are dragging over the thing!");
       console.log("dropped");
       if (globalContext.dragItem === "start") {
         globalContext.setStartCoord(globalContext.dragStartLocStart);
@@ -148,7 +148,7 @@ function IndividualTile(props) {
       }
       return null;
     }
-    console.log("FUCK WE PROCEED WITH DROP");
+    console.log(" WE PROCEED WITH DROP");
     if (globalContext.dragItem === "start") {
       if (globalContext.startCoord != props.item) {
         setSelectedBox("startLocation");
