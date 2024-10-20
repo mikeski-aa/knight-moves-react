@@ -53,13 +53,40 @@ describe("Testing adding parent", () => {
   const inputVals = [[1, 2]];
 
   const simpleParent = {
-    value: [0, 0],
-    children: [],
+    value: [9, 9],
+    children: [
+      {
+        value: [0, 0],
+        children: [],
+        parents: [],
+      },
+      {
+        value: [5, 5],
+        children: [],
+        parents: [],
+      },
+    ],
     parents: [],
   };
   // this function should return an object
   test("children should be added to each children node of parent", () => {
-    expect(addParent(simpleParent)).toBe(1);
-    //   expect(addParent(simpleParent)).toBeInstanceOf(Object);
+    expect(addParent(simpleParent)).toBeInstanceOf(Object);
+  });
+
+  // this function should return an object
+  test("the parent value of first child should equal input value", () => {
+    expect(addParent(simpleParent).children[0].parents[0]).toStrictEqual([
+      9, 9,
+    ]);
+  });
+
+  // This tests if multiple children have parent values updated accordingly
+  test("Parent values for both children should be set to input", () => {
+    expect(addParent(simpleParent).children[0].parents[0]).toStrictEqual([
+      9, 9,
+    ]);
+    expect(addParent(simpleParent).children[1].parents[0]).toStrictEqual([
+      9, 9,
+    ]);
   });
 });
