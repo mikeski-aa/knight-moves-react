@@ -1,4 +1,4 @@
-import { possibleMoves, checkValidMoves, matchCheck } from "./moves";
+import { possibleMoves, checkValidMoves, matchCheck } from "../logic/moves";
 import { expect, test, describe } from "vitest";
 
 // testing possibleMoves
