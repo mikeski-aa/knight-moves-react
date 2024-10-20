@@ -33,7 +33,7 @@ function checkValidMoves(array) {
 
   for (let x of array) {
     if (x[0] > 7 || x[0] < 0 || x[1] > 7 || x[1] < 0) {
-      // console.log('Ignoring invalid coordinate!')
+      console.log("Ignoring invalid coordinate!");
     } else {
       validMoves.push(x);
     }

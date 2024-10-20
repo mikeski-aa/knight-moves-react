@@ -28,7 +28,7 @@ function addChildren(inputParent, inputVals) {
 }
 
 function addParent(inputParent) {
-  console.log(inputParent);
+  // console.log(inputParent);
   for (let x of inputParent.children) {
     inputParent.parents.forEach((element) => {
       x.parents.push(element);

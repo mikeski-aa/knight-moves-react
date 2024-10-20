@@ -6,9 +6,9 @@ function checkPrevMoves(inputValidMoves, visitedMoves) {
   for (let z of inputValidMoves) {
     for (let o of visitedMoves) {
       if (o[0] == z[0] && o[1] == z[1]) {
-        console.log("Duplicate found!!");
-        console.log(z);
-        console.log(inputValidMoves.indexOf(z));
+        // console.log("Duplicate found!!");
+        // console.log(z);
+        // console.log(inputValidMoves.indexOf(z));
         let tempInd = inputValidMoves.indexOf(z);
 
         inputValidMoves.splice(tempInd, 1);
@@ -100,7 +100,9 @@ function initialize(start, target) {
 
   // console.log("queue is");
   // console.log(queue);
-
+  console.log("////////////////////////");
+  console.log(tar);
+  console.log(queue);
   return knightMoves(tar, 0, queue, start, target);
 }
 
