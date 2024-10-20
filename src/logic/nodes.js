@@ -17,6 +17,7 @@ const newNode = (inputValue, parentValue, inputChildren) => {
   };
 };
 
+// parent and children adding was seperated here to make the code more readable
 function addChildren(inputParent, inputVals) {
   for (let x of inputVals) {
     inputParent.children.push(newNode(x, inputParent.value));
