@@ -83,92 +83,90 @@ function IndividualTile(props) {
     }
   }, [globalContext.testArray]);
 
-  const handleDragEnter = (e) => {
-    if (
-      (props.item[0] === globalContext.startCoord[0] &&
-        props.item[1] === globalContext.startCoord[1] &&
-        globalContext.dragItem === "end") ||
-      (props.item[0] === globalContext.endCoord[0] &&
-        props.item[1] === globalContext.endCoord[1] &&
-        globalContext.dragItem === "start")
-    ) {
-      console.log(
-        "YOU ARE DRAGGIN " + globalContext.dragItem + " OVER " + selectedBox
-      );
-      if (globalContext.dragItem === "start") {
-        globalContext.setStartCoord(globalContext.dragStartLocStart);
-        globalContext.setEndCoord(globalContext.dragStartLocEnd);
-      } else if (globalContext.dragItem === "end") {
-        globalContext.setEndCoord(globalContext.dragStartLocEnd);
-        globalContext.setStartCoord(globalContext.dragStartLocStart);
-      }
-      handleDragExit(e);
-      return null;
-    }
-
-    console.log("WE PROCEED");
-    console.log("starting location of drag: " + globalContext.dragStartLoc);
-    console.log("current target " + props.item);
-    console.log(
-      "being draggon " + globalContext.dragItem + " OVER " + selectedBox
-    );
-    globalContext.handleBoardReset();
-    globalContext.setCurrentlyOver(props.item);
-    if (globalContext.dragItem === "start") {
-      setSelectedBox("startLocation");
-      globalContext.setStartCoord(props.item);
-    } else if (globalContext.dragItem === "end") {
-      setSelectedBox("endLocation");
-      globalContext.setEndCoord(props.item);
-    }
-  };
-
   const handleDragExit = (e) => {
     e.preventDefault();
     setSelectedBox(undefined);
   };
 
+  // when entering drag over
+  const handleDragEnter = (e) => {
+    // if (
+    //   (props.item[0] === globalContext.startCoord[0] &&
+    //     props.item[1] === globalContext.startCoord[1] &&
+    //     globalContext.dragItem === "end") ||
+    //   (props.item[0] === globalContext.endCoord[0] &&
+    //     props.item[1] === globalContext.endCoord[1] &&
+    //     globalContext.dragItem === "start")
+    // ) {
+    //   console.log(
+    //     "YOU ARE DRAGGIN " + globalContext.dragItem + " OVER " + selectedBox
+    //   );
+    //   if (globalContext.dragItem === "start") {
+    //     globalContext.setStartCoord(globalContext.dragStartLocStart);
+    //     globalContext.setEndCoord(globalContext.dragStartLocEnd);
+    //   } else if (globalContext.dragItem === "end") {
+    //     globalContext.setEndCoord(globalContext.dragStartLocEnd);
+    //     globalContext.setStartCoord(globalContext.dragStartLocStart);
+    //   }
+    //   handleDragExit(e);
+    //   return null;
+    // }
+    // console.log("WE PROCEED");
+    // console.log("starting location of drag: " + globalContext.dragStartLoc);
+    // console.log("current target " + props.item);
+    // console.log(
+    //   "being draggon " + globalContext.dragItem + " OVER " + selectedBox
+    // );
+    // globalContext.handleBoardReset();
+    // globalContext.setCurrentlyOver(props.item);
+    // if (globalContext.dragItem === "start") {
+    //   setSelectedBox("startLocation");
+    //   globalContext.setStartCoord(props.item);
+    // } else if (globalContext.dragItem === "end") {
+    //   setSelectedBox("endLocation");
+    //   globalContext.setEndCoord(props.item);
+    // }
+  };
+
   const handleDrop = (e) => {
-    if (
-      (props.item[0] === globalContext.startCoord[0] &&
-        props.item[1] === globalContext.startCoord[1] &&
-        globalContext.dragItem === "end") ||
-      (props.item[0] === globalContext.endCoord[0] &&
-        props.item[1] === globalContext.endCoord[1] &&
-        globalContext.dragItem === "start")
-    ) {
-      console.log("DROP you are dragging over the thing!");
-      console.log("dropped");
-      if (globalContext.dragItem === "start") {
-        globalContext.setStartCoord(globalContext.dragStartLocStart);
-        globalContext.setEndCoord(globalContext.dragStartLocEnd);
-      } else if (globalContext.dragItem === "end") {
-        globalContext.setEndCoord(globalContext.dragStartLocEnd);
-        globalContext.setStartCoord(globalContext.dragStartLocStart);
-      }
-      return null;
-    }
-    console.log(" WE PROCEED WITH DROP");
-    if (globalContext.dragItem === "start") {
-      if (globalContext.startCoord != props.item) {
-        setSelectedBox("startLocation");
-        globalContext.setStartCoord(props.item);
-      }
-    } else if (globalContext.dragItem === "end") {
-      if (globalContext.endCoord != props.item) {
-        setSelectedBox("endLocation");
-        globalContext.setEndCoord(props.item);
-      }
-    }
+    // if (
+    //   (props.item[0] === globalContext.startCoord[0] &&
+    //     props.item[1] === globalContext.startCoord[1] &&
+    //     globalContext.dragItem === "end") ||
+    //   (props.item[0] === globalContext.endCoord[0] &&
+    //     props.item[1] === globalContext.endCoord[1] &&
+    //     globalContext.dragItem === "start")
+    // ) {
+    //   console.log("DROP you are dragging over the thing!");
+    //   console.log("dropped");
+    //   if (globalContext.dragItem === "start") {
+    //     globalContext.setStartCoord(globalContext.dragStartLocStart);
+    //     globalContext.setEndCoord(globalContext.dragStartLocEnd);
+    //   } else if (globalContext.dragItem === "end") {
+    //     globalContext.setEndCoord(globalContext.dragStartLocEnd);
+    //     globalContext.setStartCoord(globalContext.dragStartLocStart);
+    //   }
+    //   return null;
+    // }
+    // console.log(" WE PROCEED WITH DROP");
+    // if (globalContext.dragItem === "start") {
+    //   if (globalContext.startCoord != props.item) {
+    //     setSelectedBox("startLocation");
+    //     globalContext.setStartCoord(props.item);
+    //   }
+    // } else if (globalContext.dragItem === "end") {
+    //   if (globalContext.endCoord != props.item) {
+    //     setSelectedBox("endLocation");
+    //     globalContext.setEndCoord(props.item);
+    //   }
+    // }
   };
 
   const handleDragStart = (e) => {
     console.log(selectedBox);
-
     if (typeof selectedBox === "undefined") {
       return e.preventDefault();
     }
-
     if (selectedBox === "startLocation") {
       globalContext.setDragItem("start");
       globalContext.setDragStartLocStart(props.item);
@@ -184,13 +182,13 @@ function IndividualTile(props) {
     <>
       <div
         className={`tile ${boxType} ${selectedBox} ${animateBox}`}
-        onDragEnter={(e) => handleDragEnter(e)}
-        onDrop={(e) => handleDrop(e)}
-        onDragLeave={(e) => handleDragExit(e)}
+        // onDragEnter={(e) => handleDragEnter(e)}
+        // onDrop={(e) => handleDrop(e)}
+        // onDragLeave={(e) => handleDragExit(e)}
         onClick={handleBoxClick}
-        onDragOver={(e) => e.preventDefault(e)}
+        // onDragOver={(e) => e.preventDefault(e)}
         draggable
-        onDragStart={(e) => handleDragStart(e)}
+        // onDragStart={(e) => handleDragStart(e)}
       >
         {selectedBox === "startLocation" ? "S" : undefined}
         {selectedBox === "endLocation" ? "E" : undefined}

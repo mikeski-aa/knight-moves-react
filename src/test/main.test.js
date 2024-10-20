@@ -49,18 +49,22 @@ describe("Knight moves recursive function test", () => {
 });
 
 // creating object to mock recursive function
+// struggling to see how you can test this without breaking my own brain
 
-// describe("mock tests", () => {
-//   afterEach(() => {
-//     vi.restoreAllMocks();
-//   });
+describe("mock tests", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
 
-//   test("Spy function", () => {
-//     const spy = vi.spyOn(obj, "knightMoves");
-//     expect(spy.getMockName()).toEqual("knightMoves");
-//     expect(obj.knightMoves).toEqual("knightMoves");
-//     expect(spy).toHaveBeenCalledTimes(1);
+  test("Spy function", () => {
+    const mockKnightMoves = vi.fn(knightMoves);
+    const target = [3, 3];
+    const moveCount = 0;
+    const queue = [{ value: [0, 0], parents: [], children: [] }];
+    console.log(mockKnightMoves.mock.calls);
+    mockKnightMoves(target, moveCount, queue);
 
-//     // expect(knightMoves(targetOne, moveCount, queueTwo)).toBe(1);
-//   });
-// });
+    expect(mockKnightMoves).toHaveBeenCalled();
+    expect(mockKnightMoves.mock.calls.length).toBe(1);
+  });
+});

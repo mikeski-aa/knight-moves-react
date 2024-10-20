@@ -30,7 +30,7 @@ function knightMoves(target, moveCount, queue, sCoord, tCoord) {
     // console.log("Steps taken: ");
     queue[0].parents.push(target);
     // console.log(queue[0].parents);
-    console.log(moveCount);
+    // console.log(moveCount);
 
     const returnObj = {
       queue: queue,
@@ -100,9 +100,9 @@ function initialize(start, target) {
 
   // console.log("queue is");
   // console.log(queue);
-  console.log("////////////////////////");
-  console.log(tar);
-  console.log(queue);
+  // console.log("////////////////////////");
+  // console.log(tar);
+  // console.log(queue);
   return knightMoves(tar, 0, queue, start, target);
 }
 
