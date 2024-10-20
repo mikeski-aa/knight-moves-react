@@ -26,3 +26,13 @@ describe("Testing pervious moves", () => {
     expect(checkPrevMoves(possibleMoves, smallVisitedMoves)).toStrictEqual([]);
   });
 });
+
+describe("Knight moves recursive function test", () => {
+  const targetOne = [0, 0];
+  const queueOne = [{ value: [0, 0] }];
+  const moveCount = 1;
+
+  test("This should return an object", () => {
+    expect(knightMoves(targetOne, moveCount, queueOne)).toBe(1);
+  });
+});
