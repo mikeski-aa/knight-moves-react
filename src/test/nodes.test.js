@@ -36,12 +36,23 @@ describe("Testing adding children", () => {
 
   const simpleParent = {
     value: [0, 0],
-    children: [[1, 3]],
+    children: [],
     parents: [],
   };
   // this function should return an object
   test("children should be added to each children node of parent", () => {
     expect(addChildren(simpleParent, inputVals)).toBeInstanceOf(Object);
-    expect(addChildren(simpleParent, inputVals)).toBe(1);
+  });
+
+  // the children object should be an array
+  test("children should be an array", () => {
+    expect(addChildren(simpleParent, inputVals).children).toBeInstanceOf(Array);
+  });
+
+  // the children value should equal input value
+  test("children should be an array", () => {
+    expect(
+      addChildren(simpleParent, inputVals).children[0].value
+    ).toStrictEqual([1, 2]);
   });
 });

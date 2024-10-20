@@ -89,6 +89,7 @@ function initialize(start, target) {
   // console.log(tempValid);
 
   addChildren(testRoot, tempValid);
+  // console.log(addChildren(testRoot, tempValid));
   addParent(testRoot);
 
   let queue = [];
