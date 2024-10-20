@@ -105,3 +105,26 @@ describe("testing checkValidMoves", () => {
     ).toHaveLength(1);
   });
 });
+
+describe("Testing match check, returns true only on finding matching value", () => {
+  const target = [2, 2];
+  const currentMoves = [
+    [2, 1],
+    [0, 0],
+    [-1, -1],
+  ];
+  const currentMovesValidMatch = [
+    [2, 1],
+    [0, 0],
+    [-1, -1],
+    [2, 2],
+  ];
+
+  test("no valid matches, should return undefined", () => {
+    expect(matchCheck(target, currentMoves)).toBe(undefined);
+  });
+
+  test("valid match should return true", () => {
+    expect(matchCheck(target, currentMovesValidMatch)).toBe(true);
+  });
+});
