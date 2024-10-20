@@ -38,9 +38,3 @@ function addParent(inputParent) {
 }
 
 export { newNode, addChildren, addParent };
-
-function test(inputVals) {
-  for (let x of inputVals) {
-    console.log(x);
-  }
-}

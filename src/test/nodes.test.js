@@ -24,14 +24,6 @@ describe("Testing new node creation", () => {
 });
 
 describe("Testing adding children", () => {
-  const inputParent = {
-    value: [0, 0],
-    children: [
-      [1, 3],
-      [1, 5],
-    ],
-    parents: [],
-  };
   const inputVals = [[1, 2]];
 
   const simpleParent = {
@@ -54,5 +46,20 @@ describe("Testing adding children", () => {
     expect(
       addChildren(simpleParent, inputVals).children[0].value
     ).toStrictEqual([1, 2]);
+  });
+});
+
+describe("Testing adding parent", () => {
+  const inputVals = [[1, 2]];
+
+  const simpleParent = {
+    value: [0, 0],
+    children: [],
+    parents: [],
+  };
+  // this function should return an object
+  test("children should be added to each children node of parent", () => {
+    expect(addParent(simpleParent)).toBe(1);
+    //   expect(addParent(simpleParent)).toBeInstanceOf(Object);
   });
 });
