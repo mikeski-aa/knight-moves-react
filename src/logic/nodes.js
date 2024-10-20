@@ -21,6 +21,8 @@ function addChildren(inputParent, inputVals) {
   for (let x of inputVals) {
     inputParent.children.push(newNode(x, inputParent.value));
   }
+
+  return inputParent;
 }
 
 function addParent(inputParent) {
@@ -30,6 +32,8 @@ function addParent(inputParent) {
     });
     x.parents.push(inputParent.value);
   }
+
+  return inputParent;
 }
 
 export { newNode, addChildren, addParent };
