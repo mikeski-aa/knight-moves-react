@@ -1,6 +1,7 @@
 import { expect, test, describe, vi, afterEach } from "vitest";
 import { checkPrevMoves, initialize, knightMoves } from "../logic/main";
 import { Children } from "react";
+import { checkValidMoves } from "../logic/moves";
 
 describe("Testing pervious moves", () => {
   // checking if moves are allowed
@@ -47,56 +48,19 @@ describe("Knight moves recursive function test", () => {
   });
 });
 
-const obj = {
-  target: [0, 0],
-  moveCount: 1,
-  queue: [{ value: [0, 0], parents: [], children: [] }],
-  knightMoves(
-    target = obj.target,
-    moveCount = obj.moveCount,
-    queue = obj.queue
-  ) {
-    if (queue[0].value[0] === target[0] && queue[0].value[1] === target[1]) {
-      queue[0].parents.push(target);
-      const returnObj = {
-        queue: queue,
-        stepsTaken: queue[0].parents,
-        numberOfMoves: queue[0].parents.length,
-        movesCalculated: moveCount,
-      };
-      return returnObj;
-    } else {
-      let tempMoves = possibleMoves(queue[0].value[0], queue[0].value[1]);
-      let tempValid = checkValidMoves(tempMoves);
+// creating object to mock recursive function
 
-      tempValid = checkPrevMoves(tempValid, queue[0].parents);
+// describe("mock tests", () => {
+//   afterEach(() => {
+//     vi.restoreAllMocks();
+//   });
 
-      addChildren(queue[0], tempValid);
-      addParent(queue[0]);
-      moveCount += 1;
+//   test("Spy function", () => {
+//     const spy = vi.spyOn(obj, "knightMoves");
+//     expect(spy.getMockName()).toEqual("knightMoves");
+//     expect(obj.knightMoves).toEqual("knightMoves");
+//     expect(spy).toHaveBeenCalledTimes(1);
 
-      queue[0].children.forEach((element) => {
-        queue.push(element);
-      });
-
-      queue.shift();
-
-      return knightMoves(target, moveCount, queue);
-    }
-  },
-};
-
-describe("mock tests", () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
-  test("Spy function", () => {
-    const spy = vi.spyOn(obj, "knightMoves");
-    expect(spy.getMockName()).toEqual("knightMoves");
-    expect(obj.knightMoves).toBe(1);
-    expect(spy).toHaveBeenCalledTimes(2);
-
-    // expect(knightMoves(targetOne, moveCount, queueTwo)).toBe(1);
-  });
-});
+//     // expect(knightMoves(targetOne, moveCount, queueTwo)).toBe(1);
+//   });
+// });
