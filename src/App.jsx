@@ -122,35 +122,20 @@ function App() {
   return (
     <div className="mainContainer">
       <div className="heading">Knight moves</div>
+      <div className="whatitdo">
+        The app calculates shortest path between two coordinates for a knight on
+        a chessboard
+      </div>
       <div className="howto">
         Click the board to select start and end coordinates. Clicks alternate
         selection. Results will show the shortest path possible to coordinate,
         if there are multiple paths, only one will be shown. Animation goes
-        through real possible coordinates,{" "}
+        through real possible coordinates,
         <b>
           some animations may take a while to complete due to large move count!
         </b>{" "}
         PC users can use drag and drop instead of clicking!
       </div>
-      {/* <div className="draggables">
-        <div
-          className="dragBox start"
-          draggable
-          onDragStart={(e) => handleDragStartStart(e)}
-          onDrop={(e) => handleDrop(e)}
-        >
-          S
-        </div>
-        - PC users can drag us over the board -
-        <div
-          className="dragBox end"
-          draggable
-          onDragStart={(e) => handleDragStartEnd(e)}
-          onDrop={(e) => handleDrop(e)}
-        >
-          E
-        </div>
-      </div> */}
 
       <div className="smallBtnDiv">
         <button className="startBtn" onClick={() => handleGameStart()}>
